@@ -3,9 +3,7 @@ import * as XLSX from "xlsx";
 import axios from "axios";
 
 function App() {
-  const [data, setData] = useState({
-    from: "+18445241298",
-  });
+  const [data, setData] = useState({});
   const [sheets, setSheets] = useState();
   const [workBook, setWorkBook] = useState();
   const [selectedSheet, setSelectedSheet] = useState(0);
@@ -84,7 +82,9 @@ function App() {
     <div className="min-h-screen flex flex-col justify-center items-center">
       <form onSubmit={handleSubmit}>
         <div className="border shadow-md rounded py-10 px-20 flex flex-col items-center">
-          <h1 className="text-4xl font-light mb-6 text-center">Send message</h1>
+          <h1 className="text-4xl font-light mb-6 text-center">
+            Telnyx SMS Sender
+          </h1>
           <div className="my-2 ">
             <label className="text-sm block mb-1">API Keys</label>
             <input

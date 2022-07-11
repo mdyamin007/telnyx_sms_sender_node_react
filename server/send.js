@@ -1,20 +1,19 @@
-const sendMessage = async (apiKey, from, to, text, messaging_profile_id) => {
+const sendMessage = async (apiKey, to, text, messaging_profile_id, res) => {
   const telnyx = require("telnyx")(apiKey);
-  let res;
 
   await telnyx.messages.create(
     {
-      from: from, // Your Telnyx number
       to: to,
       text: text,
       messaging_profile_id: messaging_profile_id,
     },
     function (err, response) {
-      // asynchronously called
-      console.log(err);
+      if (err) {
+        console.log(err);
+        return res.status(err.statusCode).send(err.type);
+      }
       console.log(response);
-      if (err) res = err;
-      return (res = response);
+      return res.status(200).send(response);
     }
   );
   return res;

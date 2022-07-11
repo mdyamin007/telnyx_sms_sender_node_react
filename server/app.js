@@ -12,15 +12,8 @@ app.use(
 app.use(express.json());
 
 app.post("/api/v1/send", async (req, res) => {
-  const { apiKey, from, to, text, messaging_profile_id } = req.body;
-  const response = await sendMessage(
-    apiKey,
-    from,
-    to,
-    text,
-    messaging_profile_id
-  );
-  return res.send(response);
+  const { apiKey, to, text, messaging_profile_id } = req.body;
+  sendMessage(apiKey, to, text, messaging_profile_id, res);
 });
 
 app.listen(5000, () => {
